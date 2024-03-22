@@ -16,6 +16,11 @@ class MasterAPIView(APIView):
     serialzer = MasterDataSerialzer(data=request.data)
     if serialzer.is_valid():
       serialzer.save()
-      return Response(serialzer.data, status=status.HTTP_200_OK)
+      msg  ={
+        "ERROR" : "Data added secesfully",
+        "RESULT" : 1,
+        
+      }
+      return Response(serialzer.data, msg)
     else:
       return Response(serialzer.errors, status=status.HTTP_400_BAD_REQUEST)
